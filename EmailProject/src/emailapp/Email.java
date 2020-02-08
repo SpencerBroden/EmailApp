@@ -1,5 +1,6 @@
 package emailapp;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Email {
@@ -9,6 +10,7 @@ public class Email {
     private String password;
     private String department;
     private int mailBoxCapacity;
+    private int defaultPasswordLength = 8;
     private String alternativeEmail;
     
     // Constructor to receive the first name and last name
@@ -20,6 +22,11 @@ public class Email {
 	// Call a method asking for the department - return the department
 	this.department = setDepartment();
 	System.out.println("Department: " + this.department);
+	
+	// Call a method that returns a random password
+	this.password = randomPassword(defaultPasswordLength);
+	System.out.println("Password: " + password);
+	
     }
     // Ask for the department
     private String setDepartment() {
@@ -37,7 +44,17 @@ public class Email {
 	}
     }
     // Generate a random password
-
+    private String randomPassword(int length) {
+	char[] passwordSet = (new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk"
+		+ "lmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?")).toCharArray();
+	char[] password = new char[length];
+	Random r = new Random();
+	for(int i=0; i<password.length; i++) {
+	    password[i] = passwordSet[r.nextInt(passwordSet.length)];
+	}
+	return new String(password);
+    }
+	
     // Set the mailbox capacity
     
     // Set the alternate email

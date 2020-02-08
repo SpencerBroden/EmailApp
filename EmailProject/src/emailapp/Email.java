@@ -19,19 +19,16 @@ public class Email {
     public Email(String firstName, String lastName) {
 	this.firstName = firstName;
 	this.lastName = lastName;
-	System.out.println("Email Creation: " + this.firstName + " " + this.lastName);
 	
 	// Call a method asking for the department - return the department
 	this.department = setDepartment();
-	System.out.println("Department: " + this.department);
 	
 	// Call a method that returns a random password
 	this.password = randomPassword(defaultPasswordLength);
 	System.out.println("Password: " + password);
 	
 	// Generate Email
-	email = firstName + "." + lastName + "@" + department + companySuffix;
-	System.out.println("Email: " + email);
+	email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + companySuffix;
     }
     // Ask for the department
     private String setDepartment() {
@@ -71,5 +68,15 @@ public class Email {
     // Change the password
     public void changePassword(String password) {
 	this.password = password;
+    }
+    
+    public int getMailboxCapacity() { return mailBoxCapacity; } 
+    public String getAlternativeEmail() { return alternativeEmail; }
+    public String getPassword() { return password; }
+    
+    public String showInfo() {
+	return "Name: " + firstName + " " + lastName +
+		"\nEmail: " + email + 
+		"\nMailbox Capacity: " + mailBoxCapacity + "mb"; 
     }
 }
